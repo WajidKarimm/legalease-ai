@@ -1,0 +1,19 @@
+# Production configuration
+
+data:
+  raw_data_path: "/data/raw"
+  processed_data_path: "/data/processed"
+  features_path: "/data/features"
+  predictions_path: "/data/predictions"
+
+model:
+  name: "model-v1"
+  save_path: "/models"
+  parameters:
+    learning_rate: 0.001
+    batch_size: 64
+    epochs: 20
+
+logging:
+  level: "INFO"
+  file: "/logs/training.log"

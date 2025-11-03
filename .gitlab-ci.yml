@@ -1,0 +1,30 @@
+image: python:3.9-slim
+
+stages:
+  - test
+  - build
+  - deploy
+
+before_script:
+  - pip install -r requirements-dev.txt
+
+test:
+  stage: test
+  script:
+    - python -m pytest tests/
+
+build:
+  stage: build
+  script:
+    - python entrypoint/train.py
+  artifacts:
+    paths:
+      - models/
+    expire_in: 1 week
+
+deploy:
+  stage: deploy
+  script:
+    - python entrypoint/inference.py
+  only:
+    - main

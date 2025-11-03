@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>legalease-ai — Inference UI</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 24px; }
+    textarea { width: 100%; height: 180px; }
+    .btn { padding: 8px 12px; background:#0066cc; color:white; border:none; cursor:pointer }
+    .btn:disabled { background: #999 }
+    pre { background:#f6f6f6; padding:12px; }
+  </style>
+</head>
+<body>
+  <h1>legalease-ai — Inference UI</h1>
+  <p>Paste JSON array of rows (example below) and click <strong>Predict</strong>.</p>
+  <p>Example input:
+    <pre>[ { "f1": 1.0, "f2": 2.0 }, { "f1": 3.0, "f2": 4.1 } ]</pre>
+  </p>
+
+  <label for="input">Input JSON array</label>
+  <textarea id="input">[ { "f1": 1.0, "f2": 2.0 }, { "f1": 3.0, "f2": 4.1 } ]</textarea>
+  <div style="margin-top:12px">
+    <button id="predict" class="btn">Predict</button>
+    <span id="status" style="margin-left:12px"></span>
+  </div>
+
+  <h3>Response</h3>
+  <pre id="output">(no response yet)</pre>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

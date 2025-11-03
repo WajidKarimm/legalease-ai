@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  ml_app:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+    ports:
+      - "8000:8000"
+    command: python entrypoint/inference.py

@@ -1,0 +1,19 @@
+# Local development configuration
+
+data:
+  raw_data_path: "data/01-raw"
+  processed_data_path: "data/02-preprocessed"
+  features_path: "data/03-features"
+  predictions_path: "data/04-predictions"
+
+model:
+  name: "model-v1"
+  save_path: "models"
+  parameters:
+    learning_rate: 0.001
+    batch_size: 32
+    epochs: 10
+
+logging:
+  level: "DEBUG"
+  file: "logs/training.log"
