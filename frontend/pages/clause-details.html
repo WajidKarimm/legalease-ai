@@ -4,36 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clause Analysis - LegalEase AI</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    
+<link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <div id="app">
-        <div id="header"></div>
-        <div class="main-content">
-            <div id="sidebar"></div>
-            <div class="content">
-                <h1>Clause Analysis</h1>
-                <div class="clause-content">
-                    <div class="card">
-                        <h3>Document Upload</h3>
-                        <input type="file" id="document-upload" accept=".pdf,.doc,.docx">
-                        <button class="btn btn-primary" id="analyze-btn">Analyze Document</button>
-                    </div>
-                    <div class="card">
-                        <h3>Analysis Results</h3>
-                        <div id="analysis-results"></div>
-                    </div>
+<body class="dashboard-layout">
+    <!-- Sidebar (same as dashboard) -->
+    <aside class="sidebar">
+        <!-- ... sidebar content ... -->
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="btn-back" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h1 class="page-title">Detailed Clause Analysis</h1>
+            </div>
+        </header>
+
+        <div class="clause-details-container">
+            <!-- Clause Selector -->
+            <div class="clause-selector-card">
+                <label for="clauseSelect">Select Clause:</label>
+                <select id="clauseSelect" class="select-input" onchange="loadClauseDetails(this.value)">
+                    <!-- Dynamic options -->
+                </select>
+            </div>
+
+            <!-- Risk Indicator -->
+            <div class="risk-alert" id="riskAlert">
+                <div class="risk-alert-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="risk-alert-content">
+                    <h3 id="riskLevel">HIGH RISK</h3>
+                    <p id="riskScore">Score: 85/100</p>
+                </div>
+            </div>
+
+            <!-- Clause Text -->
+            <div class="content-card">
+                <h3 class="card-title">
+                    <i class="fas fa-file-alt"></i>
+                    Clause Text
+                </h3>
+                <div class="clause-text-box" id="clauseText">
+                    <!-- Dynamic content -->
+                </div>
+                <div class="clause-meta">
+                    <span class="meta-item">
+                        <strong>Category:</strong> <span id="clauseCategory">--</span>
+                    </span>
+                    <span class="meta-item">
+                        <strong>Position:</strong> <span id="clausePosition">--</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Detected Risks -->
+            <div class="content-card" id="detectedRisksCard">
+                <h3 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Detected Risk Patterns
+                </h3>
+                <div class="risks-list" id="detectedRisks">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+
+            <!-- Legal Precedents -->
+            <div class="content-card">
+                <h3 class="card-title">
+                    <i class="fas fa-gavel"></i>
+                    Relevant Legal Precedents
+                </h3>
+                <div class="precedents-list" id="precedentsList">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+
+            <!-- AI Analysis -->
+            <div class="content-card">
+                <h3 class="card-title">
+                    <i class="fas fa-robot"></i>
+                    AI Risk Analysis
+                </h3>
+                <div class="analysis-content" id="aiAnalysis">
+                    <div class="skeleton-loader"></div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="content-card recommendations-card">
+                <h3 class="card-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Recommendations
+                </h3>
+                <div class="recommendations-content" id="recommendations">
+                    <div class="skeleton-loader"></div>
                 </div>
             </div>
         </div>
-        <div id="footer"></div>
-    </div>
+    </main>
 
-    <!-- Scripts -->
-    <script type="module" src="../assets/js/api.js"></script>
-    <script type="module" src="../assets/js/clause-analysis.js"></script>
-    <script type="module" src="../assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="/assets/js/api.js"></script>
+    <script src="/assets/js/clause-analysis.js"></script>
 </body>
 </html>

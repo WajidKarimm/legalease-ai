@@ -1,5 +1,5 @@
-from fastapi import APIRouter, HTTPException
-from src.api.schemas import PredictRequest, PredictResponse
+from fastapi import APIRouter, HTTPException, File, UploadFile
+from src.api.schemas import PredictResponse
 from src.models.clause_classifier import ClauseClassifier
 from src.models.risk_scorer import RiskScorer
 from src.models.ner_extractor import NERExtractor
@@ -28,16 +28,20 @@ def health():
     return {"status": "ok"}
 
 @router.post("/predict", response_model=PredictResponse)
-async def predict(req: PredictRequest):
+async def predict(document: UploadFile = File(...)):
     """Process legal document and return predictions"""
     if not all([clause_classifier, risk_scorer, ner_extractor]):
         raise HTTPException(status_code=503, detail="Models not loaded")
     
     try:
+        # Read the file content
+        content = await document.read()
+        text = content.decode("utf-8")
+
         # Process the document through our pipeline
-        clauses = clause_classifier.predict(req.text)
+        clauses = clause_classifier.predict(text)
         risks = risk_scorer.predict(clauses)
-        entities = ner_extractor.predict(req.text)
+        entities = ner_extractor.predict(text)
         
         return PredictResponse(
             clauses=clauses,

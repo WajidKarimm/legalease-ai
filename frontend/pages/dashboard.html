@@ -3,44 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - LegalEase AI</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <title>Contract Analysis - LegalEase AI</title>
+    
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <div id="app">
-        <div id="header"></div>
-        <div class="main-content">
-            <div id="sidebar"></div>
-            <div class="content">
-                <h1>Dashboard</h1>
-                <div class="dashboard-stats">
-                    <div class="card">
-                        <h3>Documents Analyzed</h3>
-                        <div class="stat" id="docs-analyzed">0</div>
+<body class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-balance-scale"></i>
+            <span>LegalEase AI</span>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="javascript:void(0)" onclick="loadClauseAnalysis()" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Clause Analysis</span>
+            </a>
+            <a href="chat.html" class="nav-item">
+                <i class="fas fa-comments"></i>
+                <span>Chat Assistant</span>
+            </a>
+            <a href="summary.html" class="nav-item">
+                <i class="fas fa-book"></i>
+                <span>Summary</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button class="btn btn-outline btn-sm" onclick="uploadNew()">
+                <i class="fas fa-plus"></i> New Contract
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Contract Analysis</h1>
+            </div>
+            
+            <div class="topbar-right">
+                <div class="contract-info">
+                    <i class="fas fa-file-contract"></i>
+                    <span id="contractName">Loading...</span>
+                </div>
+                <button class="btn-icon" onclick="showExportMenu()">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="btn-icon" onclick="showSettings()">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-container">
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Overall Risk Score</span>
+                        <i class="fas fa-info-circle tooltip" title="0-100 scale"></i>
                     </div>
-                    <div class="card">
-                        <h3>Active Projects</h3>
-                        <div class="stat" id="active-projects">0</div>
+                    <div class="metric-value">
+                        <span id="overallRiskScore" class="metric-number">--</span>
+                        <span class="metric-unit">/100</span>
                     </div>
-                    <div class="card">
-                        <h3>Recent Activity</h3>
-                        <div id="activity-list"></div>
+                    <div class="metric-badge" id="riskLevelBadge">
+                        <span class="badge badge-medium">--</span>
                     </div>
                 </div>
-                <div class="chart-container">
-                    <canvas id="activity-chart"></canvas>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">High Risk Clauses</span>
+                    </div>
+                    <div class="metric-value">
+                        <span id="highRiskCount" class="metric-number">--</span>
+                    </div>
+                    <div class="metric-trend trend-up">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Requires attention</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Total Clauses</span>
+                    </div>
+                    <div class="metric-value">
+                        <span id="totalClauses" class="metric-number">--</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Medium Risk Clauses</span>
+                    </div>
+                    <div class="metric-value">
+                        <span id="mediumRiskCount" class="metric-number">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <!-- Risk Gauge -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Risk Distribution</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="riskGauge"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Clause Distribution -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Clause Categories</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="clauseDistribution"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Metadata -->
+            <div class="info-card">
+                <h3 class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    Contract Information
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Parties</span>
+                        <span class="info-value" id="contractParties">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Effective Date</span>
+                        <span class="info-value" id="effectiveDate">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Termination Date</span>
+                        <span class="info-value" id="terminationDate">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Contract Value</span>
+                        <span class="info-value" id="contractValue">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Governing Law</span>
+                        <span class="info-value" id="governingLaw">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Jurisdiction</span>
+                        <span class="info-value" id="jurisdiction">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High Risk Clauses -->
+            <div class="clauses-section" id="highRiskSection">
+                <h3 class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    High Risk Clauses
+                </h3>
+                <div id="highRiskClauses" class="clauses-list">
+                    <!-- Dynamic content -->
                 </div>
             </div>
         </div>
-        <div id="footer"></div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner-large"></div>
+        <p>Loading analysis...</p>
     </div>
 
     <!-- Scripts -->
-    <script src="../assets/vendor/chart.js"></script>
-    <script type="module" src="../assets/js/api.js"></script>
-    <script type="module" src="../assets/js/dashboard.js"></script>
-    <script type="module" src="../assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script type="module" src="/assets/js/api.js"></script>
+    <script src="/assets/js/charts.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
 </body>
 </html>

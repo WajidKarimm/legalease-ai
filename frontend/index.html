@@ -3,52 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LegalEase AI</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <title>LegalEase AI - Contract Analysis Platform</title>
+    <meta name="description" content="AI-powered contract analysis with legal precedent matching">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div id="app">
-        <!-- Include header -->
-        <div id="header"></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar container">
+            <div class="navbar-brand">
+                <i class="fas fa-balance-scale logo-icon"></i>
+                <span class="logo-text">LegalEase AI</span>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="navbar-actions">
+                <button class="btn btn-secondary" onclick="showLogin()">Login</button>
+                <button class="btn btn-primary" onclick="showUpload()">Get Started</button>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
 
-        <!-- Main content -->
-        <div class="main-content">
-            <div id="sidebar"></div>
-            <div class="content">
-                <h1>Welcome to LegalEase AI</h1>
-                <p>Your intelligent legal document assistant</p>
-                <!-- Add your main content here -->
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    AI-Powered Contract Analysis
+                    <span class="gradient-text">Made Simple</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Analyze contracts in minutes, not hours. Get instant risk assessments,
+                    legal precedents, and actionable recommendations.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg" onclick="showUpload()">
+                        <i class="fas fa-upload"></i> Upload Contract
+                    </button>
+                    <button class="btn btn-outline btn-lg" onclick="scrollToDemo()">
+                        <i class="fas fa-play-circle"></i> Watch Demo
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Cost Reduction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">30s</span>
+                        <span class="stat-label">Analysis Time</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">85%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/assets/images/dashboard-preview.png" alt="LegalEase AI Dashboard" class="dashboard-preview">
             </div>
         </div>
+    </section>
 
-        <!-- Include footer -->
-        <div id="footer"></div>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need for comprehensive contract analysis</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Smart Classification</h3>
+                    <p>AI automatically categorizes clauses into 8 legal categories with 85%+ accuracy</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Risk Assessment</h3>
+                    <p>Hybrid ML model scores each clause on a 0-100 scale, identifying potential issues</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Legal Precedents</h3>
+                    <p>Retrieves relevant case law from 1000+ precedents using semantic search</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Interactive Q&A</h3>
+                    <p>Ask questions about your contract in natural language and get instant answers</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Smart Recommendations</h3>
+                    <p>Get actionable suggestions to reduce risks and improve contract terms</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Plain Language Summaries</h3>
+                    <p>AI-generated summaries explain complex legal terms in simple language</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Simple 3-step process</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-upload"></i></div>
+                    <h3>Upload Contract</h3>
+                    <p>Drag and drop your PDF or DOCX contract file</p>
+                </div>
+                
+                <div class="step-connector"></div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3>AI Analysis</h3>
+                    <p>Our AI analyzes clauses, assesses risks, and finds precedents</p>
+                </div>
+                
+                <div class="step-connector"></div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Get Results</h3>
+                    <p>Review comprehensive analysis with actionable insights</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content upload-modal">
+            <button class="modal-close" onclick="closeModal('uploadModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2>Upload Contract for Analysis</h2>
+            <p class="modal-subtitle">Supported formats: PDF, DOCX (Max 10MB)</p>
+            
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <p class="upload-text">
+                    <strong>Drag and drop</strong> your contract here or
+                    <label for="fileInput" class="upload-link">browse files</label>
+                </p>
+                <input type="file" id="fileInput" accept=".pdf,.docx,.doc" hidden onchange="handleFileSelect(event)">
+            </div>
+            
+            <div id="uploadProgress" class="upload-progress hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressText">Uploading...</p>
+            </div>
+            
+            <div id="analysisProgress" class="analysis-progress hidden">
+                <div class="spinner"></div>
+                <p>Analyzing contract...</p>
+                <p class="progress-detail">This may take up to 30 seconds</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Vendor Scripts -->
-    <script src="assets/vendor/marked.min.js"></script>
-    <script src="assets/vendor/chart.js"></script>
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
 
-    <!-- Core Scripts -->
-    <script type="module" src="assets/js/api.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>LegalEase AI</span>
+                    </div>
+                    <p>Making legal protection accessible to everyone</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LegalEase AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Component loader -->
-    <script>
-        // Load components
-        fetch('components/header.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
-        
-        fetch('components/sidebar.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('sidebar').innerHTML = data);
-        
-        fetch('components/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
-    </script>
+    <!-- Scripts -->
+    <script type="module" src="/assets/js/api.js"></script>
+    <script type="module" src="/assets/js/main.js"></script>
 </body>
 </html>

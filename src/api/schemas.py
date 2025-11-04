@@ -3,14 +3,7 @@ from typing import List, Dict
 
 class PredictRequest(BaseModel):
     """Request model for document analysis"""
-    text: str
-    
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "text": "This Agreement is made between Party A and Party B..."
-            }
-        }
+    pass
 
 class Clause(BaseModel):
     """Model for classified clauses"""
