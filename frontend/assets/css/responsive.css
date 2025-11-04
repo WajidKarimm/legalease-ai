@@ -1,0 +1,33 @@
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .header {
+        padding: 0.5rem;
+    }
+}

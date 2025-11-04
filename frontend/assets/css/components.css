@@ -1,0 +1,44 @@
+/* Component styles */
+.header {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+}
+
+.footer {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LegalEase AI</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+    <div id="app">
+        <div id="header"></div>
+        <div class="main-content">
+            <div id="sidebar"></div>
+            <div class="content">
+                <h1>Dashboard</h1>
+                <div class="dashboard-stats">
+                    <div class="card">
+                        <h3>Documents Analyzed</h3>
+                        <div class="stat" id="docs-analyzed">0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Active Projects</h3>
+                        <div class="stat" id="active-projects">0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Recent Activity</h3>
+                        <div id="activity-list"></div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="activity-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/vendor/chart.js"></script>
+    <script type="module" src="../assets/js/api.js"></script>
+    <script type="module" src="../assets/js/dashboard.js"></script>
+    <script type="module" src="../assets/js/main.js"></script>
+</body>
+</html>
