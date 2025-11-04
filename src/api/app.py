@@ -24,10 +24,10 @@ app = FastAPI(title="legalease-ai Inference API", version="0.1")
 pipeline = None
 
 # mount static UI
-BASE_DIR = Path(__file__).resolve().parent
-static_dir = BASE_DIR / "static"
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # go up to project root
+static_dir = BASE_DIR / "frontend"
 if static_dir.exists():
-    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+    app.mount("/frontend", StaticFiles(directory=str(static_dir)), name="frontend")
 
 
 @app.on_event("startup")
@@ -55,7 +55,7 @@ def health():
 @app.get("/", response_class=HTMLResponse)
 def ui_index():
     # Serve the single-page UI (if present)
-    index_file = BASE_DIR / "static" / "index.html"
+    index_file = BASE_DIR / "frontend" / "index.html"
     if index_file.exists():
         return FileResponse(index_file)
     return HTMLResponse("<html><body><h3>UI not found. Use /predict API.</h3></body></html>")

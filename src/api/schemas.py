@@ -6,7 +6,7 @@ class PredictRequest(BaseModel):
     text: str
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "text": "This Agreement is made between Party A and Party B..."
             }
